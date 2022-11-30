@@ -40,11 +40,15 @@ jest.mock("axios", () => ({
 
 //jest.mock("./../ts/services/movieService.ts");
 
-test("should get mock data", async () => {
-  //Arrange
-  let text = "test";
-  //Act
-  let response = await getData(text);
-  //Assert
-  expect(response.length).toBe(4);
+describe("getData", () => {
+  test("should get mock data", async () => {
+    //Arrange
+    let text = "test";
+    //Act
+    let response = await getData(text);
+    //Assert
+    expect(response.length).toBe(4);
+  });
+  /*
+  test("should return empty list", () => {});*/
 });
