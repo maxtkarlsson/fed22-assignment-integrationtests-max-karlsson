@@ -1,6 +1,7 @@
 import { IMovie } from "../ts/models/IMovie";
 import { getData } from "../ts/services/movieService";
 
+// Mockdata
 let mockMovies: IMovie[] = [
   {
     Title: "Lotr",
@@ -32,6 +33,7 @@ let mockMovies: IMovie[] = [
   },
 ];
 
+// Mock axios.get so we get our testdata
 jest.mock("axios", () => ({
   get: async () => {
     return new Promise((resolve) => resolve({ data: { Search: mockMovies } }));
@@ -50,5 +52,14 @@ describe("getData", () => {
     expect(response.length).toBe(4);
   });
   /*
-  test("should return empty list", () => {});*/
+  test("should not get data", () => {
+    //Arrange
+    jest.mock("axios", () => ({
+      get: async () => {
+        return new Promise((resolve) => resolve({ data: { Search: mockMovies } }));
+      },
+    }));
+    //Act
+    //Assert
+  });*/
 });

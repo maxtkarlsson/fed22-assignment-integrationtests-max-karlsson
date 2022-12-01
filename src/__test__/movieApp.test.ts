@@ -29,13 +29,21 @@ describe("init", () => {
   });
 });
 
-/*
 describe("handleSubmit", () => {
-  test("should", () => {
+  test("should call createHtml", async () => {
+    //Arrange
+    let spy = jest.spyOn(functions, "createHtml");
+    document.body.innerHTML = `
+      <input type="text" id="searchText" placeholder="Skriv titel här" value="Lotr" />
+      <div id="movie-container"></div>`;
 
+    //Act
+    await functions.handleSubmit();
+
+    //Assert
+    expect(spy).toHaveBeenCalled();
   });
 });
-*/
 
 describe("createHtml", () => {
   test("should create html from a list and add class", async () => {
