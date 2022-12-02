@@ -38,6 +38,7 @@ export async function getData(): Promise<IMovie[]> {
   });
 }
 */
+
 export async function getData(searchText: string): Promise<IMovie[]> {
   return new Promise((resolve, reject) => {
     if (searchText.length !== 0) {

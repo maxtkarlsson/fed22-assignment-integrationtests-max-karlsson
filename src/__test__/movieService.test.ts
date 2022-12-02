@@ -1,7 +1,7 @@
 import { IMovie } from "../ts/models/IMovie";
 import { getData } from "../ts/services/movieService";
 
-// Mockdata
+// Mockdatalist
 let mockMovies: IMovie[] = [
   {
     Title: "Lotr",
@@ -33,7 +33,6 @@ let mockMovies: IMovie[] = [
   },
 ];
 
-// Mock axios.get so we get our testdata
 /*
 jest.mock("axios", () => ({
   get: async () => {
@@ -42,6 +41,8 @@ jest.mock("axios", () => ({
 }));
 //jest.mock("./../ts/services/movieService.ts");
 */
+
+// Mock axios.get so we get our testdata and dont make a call to a real API
 
 jest.mock("axios", () => ({
   get: async (searchText: string) => {
