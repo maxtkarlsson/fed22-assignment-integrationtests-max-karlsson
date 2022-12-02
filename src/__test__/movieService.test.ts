@@ -34,13 +34,28 @@ let mockMovies: IMovie[] = [
 ];
 
 // Mock axios.get so we get our testdata
+/*
 jest.mock("axios", () => ({
   get: async () => {
     return new Promise((resolve) => resolve({ data: { Search: mockMovies } }));
   },
 }));
-
 //jest.mock("./../ts/services/movieService.ts");
+*/
+
+jest.mock("axios", () => ({
+  get: async (searchText: string) => {
+    let newSearchtext: string = searchText.substring(38);
+
+    return new Promise((resolve, reject) => {
+      if (newSearchtext.length > 3) {
+        resolve({ data: { Search: mockMovies } });
+      } else {
+        reject({ data: [] });
+      }
+    });
+  },
+}));
 
 describe("getData", () => {
   test("should get mock data", async () => {
@@ -51,15 +66,13 @@ describe("getData", () => {
     //Assert
     expect(response.length).toBe(4);
   });
-  /*
-  test("should not get data", () => {
+
+  test("should not get data", async () => {
     //Arrange
-    jest.mock("axios", () => ({
-      get: async () => {
-        return new Promise((resolve) => resolve({ data: { Search: mockMovies } }));
-      },
-    }));
+    let text = "te";
     //Act
+    let response = await getData(text);
     //Assert
-  });*/
+    expect(response.length).toBe(0);
+  });
 });
